@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html dir='ltr' lang='en' xmlns:fb='http://www.facebook.com/2008/fbml'>
-<!--<script language='javascript' type='text/javascript'> if(self==top) { top.location.href="https://www.yosintv.link/"; } </script>-->
 
 <script>
     (function () {
     const storageKey = "lastAdLoadTime";
-    const delayBeforeLoading = 6000; // 7 seconds
+    const delayBeforeLoading = 8000; // 7 seconds
 	    
     function loadAdsScript() {
         (function(s, u, z, p) {
@@ -18,6 +17,7 @@
     setTimeout(loadAdsScript, delayBeforeLoading);
 })();
 </script>
+
 
 
 <head>
@@ -33,13 +33,64 @@
         { "@context": "http://schema.org/", "@type": "WebSite", "name": "CR7TV", "alternateName": "CR7TV", "url": "https://www.yosin-tv.net/" }
     </script>
 
-    <!-- Mid Ads Banner-->
-    <style>
-        .disclaimerr {
+  <style>
+    .comment-section-container {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      display: flex;
+      justify-content: center;
+      padding: 30px;
+    }
+    .comment-box-container {
+      background: #fff;
+      padding: 20px;
+      width: 100%;
+      max-width: 600px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+    .comment-box-container input,
+    .comment-box-container textarea {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    .comment-box-container button {
+      padding: 10px 15px;
+      border: none;
+      background: #28a745;
+      color: white;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    .single-comment {
+      background: #f9f9f9;
+      padding: 12px;
+      margin-top: 10px;
+      border-left: 4px solid #28a745;
+      border-radius: 5px;
+    }
+    .single-comment div {
+      margin: 5px 0;
+    }
+    .single-comment small {
+      display: block;
+      margin-top: 5px;
+      font-size: 0.8em;
+      color: #555;
+    }
+  </style>
+  
+  <style>
+	    
+          .disclaimerr {
            background: #b5ff00;}
     
-    
-    	
             .ad-banner {
                 display: block;
                 max-width: 100%;
@@ -142,6 +193,11 @@
             .colmd{width:40%;float:right;text-align:center;padding:35px 0 35px 0;color:#fff;}
             *[dir="ltr"] .colmd{width:40%;float:left !important;text-align:center;padding:35px 0 35px 0;color:#fff;}
     </style>
+<link rel="me" href="https://www.blogger.com/profile/12720910313934831026" />
+<meta name='google-adsense-platform-account' content='ca-host-pub-1556223355139109'/>
+<meta name='google-adsense-platform-domain' content='blogspot.com'/>
+
+<!-- data-ad-client=ca-pub-5525538810839147 -->
 </head>
 
 
@@ -212,6 +268,7 @@
 </div>
 -->
 
+
 <!--
                                 <div class="ad-container">
                                     <a href="https://shorturl.at/O0ARQ" target="_blank" rel="noopener noreferrer">
@@ -221,8 +278,8 @@
 -->
 
 
-<!-- Mobile Only Ads-->
 
+<!-- Mobile Only Ads-->
 <center>
 <script type="text/javascript">
 	atOptions = {
@@ -236,7 +293,7 @@
 <script type="text/javascript" src="//prosecutorremarkablegodforsaken.com/404fc8f3cacfd3432bb75ca06f2afb48/invoke.js"></script>
 </center>
 
-				    
+
 <div style="text-align: center; margin-top: -13px; width: 100%;">
   <h3 style="margin-bottom: 10px;"> 👉 Share this live link with your Friends:</h3>
   <div style="
@@ -300,32 +357,88 @@
   loadShareLink();
 </script>
 
+<div class="disclaimer" style="text-align: center;"><b><span style="color: black;"> Skip 1-2 Ads | Watch Peacefully </span></b></div>
+<iframe id="iframe" allow="encrypted-media" allowfullscreen="allowfullscreen" allowtransparency="true" frameborder="0" height="500px" marginheight="0" scrolling="no" marginwidth="0" width="100%"></iframe>
 
 
+  <div class="comment-section-container">
+    <div class="comment-box-container">
+      <h2>Leave a Comment</h2>
+      <input type="text" id="name" placeholder="Your name" />
+      <textarea id="comment" placeholder="Your comment"></textarea>
+      <button onclick="addComment()">Add Comment</button>
+      <div id="comments"></div>
+    </div>
+  </div>
 
+<!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+
+  <script>
+    const firebaseConfig = {
+ apiKey: "AIzaSyCKsT39UvAxIC8Do9P_Va5uXT0-G8aumhQ",
+  authDomain: "comment-7d914.firebaseapp.com",
+  databaseURL: "https://comment-7d914-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "comment-7d914",
+  storageBucket: "comment-7d914.firebasestorage.app",
+  messagingSenderId: "71699102073",
+  appId: "1:71699102073:web:d5f7bcb36e0181160d17a8"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    function addComment() {
+      const name = document.getElementById("name").value.trim();
+      const comment = document.getElementById("comment").value.trim();
+      if (name && comment) {
+        const newCommentRef = db.ref("comments").push();
+        newCommentRef.set({
+          name,
+          comment,
+          timestamp: Date.now()
+        });
+        document.getElementById("name").value = "";
+        document.getElementById("comment").value = "";
+      }
+    }
+
+    function formatTime(timestamp) {
+      const date = new Date(timestamp);
+      return date.toLocaleString();
+    }
+
+    function renderComment(id, data) {
+      const commentBox = document.getElementById("comments");
+      let existing = document.getElementById(`comment-${id}`);
+      if (existing) existing.remove();
+
+      const div = document.createElement("div");
+      div.className = "single-comment";
+      div.id = `comment-${id}`;
+      div.innerHTML = `
+        <div><strong>Name:</strong> ${data.name}</div>
+        <div><strong>Comment:</strong> ${data.comment}</div>
+        <small>${formatTime(data.timestamp)}</small>
+      `;
+      commentBox.prepend(div);
+    }
+
+    db.ref("comments").orderByChild("timestamp").on("child_added", snapshot => {
+      renderComment(snapshot.key, snapshot.val());
+    });
+
+    db.ref("comments").on("child_changed", snapshot => {
+      renderComment(snapshot.key, snapshot.val());
+    });
+
+    db.ref("comments").on("child_removed", snapshot => {
+      const el = document.getElementById(`comment-${snapshot.key}`);
+      if (el) el.remove();
+    });
+  </script>
 				    
-	                       <div class="disclaimer" style="text-align: center;"><b><span style="color: black;"> Skip 1-2 Ads | Watch Peacefully </span></b></div>
-                                <iframe id="iframe" allow="encrypted-media" allowfullscreen="allowfullscreen" allowtransparency="true" frameborder="0" height="500px" marginheight="0" scrolling="no" marginwidth="0" width="100%"></iframe>
-
-
-
-                                <!--
-<center>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5525538810839147"
-     crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-5525538810839147"
-     data-ad-slot="4345862479"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-</center>
--->
-
-
                                 <div id="jwPlayer"> </div>
 
                                 <script>
@@ -381,6 +494,7 @@
                         <div class='wdthbox'>
                             <p>CR7TV Doesn't host any media content on it own Site. Our site visitors might use external or third parties services to show content, (Example: Embedding media from sites like Bet365, Dailymotion , Streamable etc ..) We Notify
                                 all copyright owners, to discover that the links and media shared by visitors and contained within this site are hosted somewhere else on the web or embedded from other various sites like above. </p>
+
 
                             <h3> What is CR7TV ?</h3>
                             <p>CR7TV is sports website that covers all the Cricket Matches, World Cup, International/Domestic Matches, Football Matches, etc.</p>
@@ -458,6 +572,7 @@
         </script>
 
 
+
         <!-- BEGIN: Powered by Supercounters.com -->
         <div style="position:fixed;top:0;left:0;width:100%;height:1px;overflow:hidden;visibility:hidden;z-index:9999;">
             <script type="text/javascript" src="//widget.supercounters.com/ssl/online_i.js"></script>
@@ -469,7 +584,7 @@
 
 
 
-        <!--
+<!--
 <script type='text/javascript'>
 $(document).ready(function() {$('img#closed').click(function(){$('#bl_banner').hide(90);});});
 </script>
@@ -499,6 +614,7 @@ $(document).ready(function() {$('img#closed').click(function(){$('#bl_banner').h
 -->
 
 
+
         <style>
             .s-text strong,.social-counter{font-weight:900}.techornate-socials a{display:block;color:#fff;padding:9px 9px;border-radius:6px;position:relative;margin-bottom:5px;text-decoration:none}.techornate-socials a span,.techornate-socials a:before{z-index:2;position:relative}.social-counter{position:absolute;font-family:opensans;font-size:17px;line-height:1;padding-top:4px}.s-text{float:right}.techornate-socials a:after{content:" ";height:100%;width:0;top:0;left:0;position:absolute;background:#0a0647;z-index:1}.fa-subscribe:before,.fa-twitter:before{display:inline-block;width:16px;font-family:opensans;margin-right:10px;padding-right:10px;font-size:18px;border-right:1px solid rgba(255,255,255,.3)}.fa-play{background:#d2002c}.fa-play:after{content:"\f167"} .fa-whatsapp{background:#09b320}
         </style>
@@ -507,7 +623,5 @@ $(document).ready(function() {$('img#closed').click(function(){$('#bl_banner').h
             </div>
         </div>
 
-
 </body>
-
 </html>
