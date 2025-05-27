@@ -33,17 +33,15 @@
         { "@context": "http://schema.org/", "@type": "WebSite", "name": "CR7TV", "alternateName": "CR7TV", "url": "https://www.yosin-tv.net/" }
     </script>
 
-    <!-- Mid Ads Banner-->
-    <style>
-
-	        .comment-section {
+  <style>
+    .comment-section-container {
       font-family: Arial, sans-serif;
       background: #f2f2f2;
       display: flex;
       justify-content: center;
       padding: 30px;
     }
-    .comment-section .comment-box {
+    .comment-box-container {
       background: #fff;
       padding: 20px;
       width: 100%;
@@ -51,41 +49,46 @@
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
       border-radius: 8px;
     }
-    .comment-section .comment-box input,
-    .comment-section .comment-box textarea {
+    .comment-box-container input,
+    .comment-box-container textarea {
       width: 100%;
       margin-bottom: 10px;
       padding: 10px;
       border: 1px solid #ccc;
       border-radius: 4px;
+      font-size: 14px;
     }
-    .comment-section .comment-box button {
+    .comment-box-container button {
       padding: 10px 15px;
       border: none;
       background: #28a745;
       color: white;
       cursor: pointer;
       border-radius: 4px;
+      font-size: 14px;
       margin-bottom: 20px;
     }
-    .comment-section .comment {
-      background: #eee;
-      padding: 10px;
+    .single-comment {
+      background: #f9f9f9;
+      padding: 12px;
       margin-top: 10px;
+      border-left: 4px solid #28a745;
       border-radius: 5px;
     }
-    .comment-section .comment strong {
-      display: block;
-      margin-bottom: 5px;
+    .single-comment div {
+      margin: 5px 0;
     }
-    .comment-section .comment small {
+    .single-comment small {
       display: block;
       margin-top: 5px;
       font-size: 0.8em;
       color: #555;
     }
+  </style>
+  
+  <style>
 	    
-.disclaimerr {
+          .disclaimerr {
            background: #b5ff00;}
     
             .ad-banner {
@@ -232,25 +235,6 @@
                         <div class='widget HTML' data-version='2' id='HTML1'>
                             <div class='widget-content'>
 
-                                <!-- contenthere -->
-
-
-                                <!--
-<center>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5525538810839147"
-     crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-5525538810839147"
-     data-ad-slot="4345862479"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-</center>
--->
-
 
                                 <!--
 <div class="ad-container">
@@ -353,8 +337,8 @@
 <iframe id="iframe" allow="encrypted-media" allowfullscreen="allowfullscreen" allowtransparency="true" frameborder="0" height="500px" marginheight="0" scrolling="no" marginwidth="0" width="100%"></iframe>
 
 
-  <div class="comment-section">
-    <div class="comment-box">
+  <div class="comment-section-container">
+    <div class="comment-box-container">
       <h2>Leave a Comment</h2>
       <input type="text" id="name" placeholder="Your name" />
       <textarea id="comment" placeholder="Your comment"></textarea>
@@ -363,21 +347,20 @@
     </div>
   </div>
 
-  <!-- Firebase SDK -->
+<!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
 
-
-<script>
-    // Your Firebase Config Here
+  <script>
     const firebaseConfig = {
- apiKey: "AIzaSyCKsT39UvAxIC8Do9P_Va5uXT0-G8aumhQ",
-  authDomain: "comment-7d914.firebaseapp.com",
-  databaseURL: "https://comment-7d914-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "comment-7d914",
-  storageBucket: "comment-7d914.firebasestorage.app",
-  messagingSenderId: "71699102073",
-  appId: "1:71699102073:web:d5f7bcb36e0181160d17a8"
+      apiKey: "AIzaSyB6St8hTWMVqusixA1VG5WUmv5-qs60d1U",
+      authDomain: "comment-80df0.firebaseapp.com",
+      databaseURL: "https://comment-80df0-default-rtdb.firebaseio.com",
+      projectId: "comment-80df0",
+      storageBucket: "comment-80df0.appspot.com",
+      messagingSenderId: "62196458944",
+      appId: "1:62196458944:web:60a314309060499c1b1425",
+      measurementId: "G-S4HSGDZNY7"
     };
 
     firebase.initializeApp(firebaseConfig);
@@ -409,11 +392,11 @@
       if (existing) existing.remove();
 
       const div = document.createElement("div");
-      div.className = "comment";
+      div.className = "single-comment";
       div.id = `comment-${id}`;
       div.innerHTML = `
-        <strong>${data.name}</strong>
-        <div class="text">${data.comment}</div>
+        <div><strong>Name:</strong> ${data.name}</div>
+        <div><strong>Comment:</strong> ${data.comment}</div>
         <small>${formatTime(data.timestamp)}</small>
       `;
       commentBox.prepend(div);
@@ -618,5 +601,4 @@ $(document).ready(function() {$('img#closed').click(function(){$('#bl_banner').h
         </div>
 
 </body>
-
 </html>
