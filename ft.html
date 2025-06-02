@@ -371,73 +371,10 @@
     </div>
   </div>
 
-<!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+<center>
+<iframe height="440px"  width="100%" src="https://www.yosintv.link/chat">
+</iframe></center>
 
-  <script>
-    const firebaseConfig = {
- apiKey: "AIzaSyCKsT39UvAxIC8Do9P_Va5uXT0-G8aumhQ",
-  authDomain: "comment-7d914.firebaseapp.com",
-  databaseURL: "https://comment-7d914-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "comment-7d914",
-  storageBucket: "comment-7d914.firebasestorage.app",
-  messagingSenderId: "71699102073",
-  appId: "1:71699102073:web:d5f7bcb36e0181160d17a8"
-    };
-
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.database();
-
-    function addComment() {
-      const name = document.getElementById("name").value.trim();
-      const comment = document.getElementById("comment").value.trim();
-      if (name && comment) {
-        const newCommentRef = db.ref("comments").push();
-        newCommentRef.set({
-          name,
-          comment,
-          timestamp: Date.now()
-        });
-        document.getElementById("name").value = "";
-        document.getElementById("comment").value = "";
-      }
-    }
-
-    function formatTime(timestamp) {
-      const date = new Date(timestamp);
-      return date.toLocaleString();
-    }
-
-    function renderComment(id, data) {
-      const commentBox = document.getElementById("comments");
-      let existing = document.getElementById(`comment-${id}`);
-      if (existing) existing.remove();
-
-      const div = document.createElement("div");
-      div.className = "single-comment";
-      div.id = `comment-${id}`;
-      div.innerHTML = `
-        <div><strong>Name:</strong> ${data.name}</div>
-        <div><strong>Comment:</strong> ${data.comment}</div>
-        <small>${formatTime(data.timestamp)}</small>
-      `;
-      commentBox.prepend(div);
-    }
-
-    db.ref("comments").orderByChild("timestamp").on("child_added", snapshot => {
-      renderComment(snapshot.key, snapshot.val());
-    });
-
-    db.ref("comments").on("child_changed", snapshot => {
-      renderComment(snapshot.key, snapshot.val());
-    });
-
-    db.ref("comments").on("child_removed", snapshot => {
-      const el = document.getElementById(`comment-${snapshot.key}`);
-      if (el) el.remove();
-    });
-  </script>
 				    
                                 <div id="jwPlayer"> </div>
 
