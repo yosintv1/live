@@ -33,58 +33,77 @@
         { "@context": "http://schema.org/", "@type": "WebSite", "name": "CR7TV", "alternateName": "CR7TV", "url": "https://www.yosin-tv.net/" }
     </script>
 
-  <style>
-    .comment-section-container {
-      font-family: Arial, sans-serif;
-      background: #f2f2f2;
-      display: flex;
-      justify-content: center;
-      padding: 30px;
+  
+<style>
+  #adblock-popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    max-width: 320px;
+    width: 90%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    color: #000000;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.5);
+    text-align: center;
+    z-index: 99999;
+    font-family: Arial, sans-serif;
+  }
+  #adblock-popup h3 {
+    margin-bottom: 10px;
+    font-size: 20px;
+  }
+  #adblock-popup p {
+    font-size: 15px;
+    margin-bottom: 0;
+  }
+  #popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 99998;
+  }
+</style>
+
+<div class='adsbygoogle' id='adsbox' style='height:1px;width:1px;position:absolute;left:-9999px;'></div>
+<!-- Popup and overlay -->
+<div id='popup-overlay'></div>
+<div id='adblock-popup'>
+<h3>AdBlock Detected</h3>
+<p>Please disable your AdBlocker to watch live match & support us.</p>
+</div>
+
+<script type='text/javascript'>
+// <![CDATA[
+window.addEventListener('load', function () {
+  setTimeout(function () {
+    var ad = document.getElementById('adsbox');
+    var detected = false;
+
+    try {
+      var style = window.getComputedStyle(ad);
+      if (!ad || ad.offsetHeight === 0 || ad.offsetParent === null || style.display === 'none' || style.visibility === 'hidden') {
+        detected = true;
+      }
+    } catch (e) {
+      detected = true;
     }
-    .comment-box-container {
-      background: #fff;
-      padding: 20px;
-      width: 100%;
-      max-width: 600px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      border-radius: 8px;
+
+    if (detected) {
+      document.getElementById('adblock-popup').style.display = 'block';
+      document.getElementById('popup-overlay').style.display = 'block';
+      document.body.style.overflow = 'hidden'; // stop scrolling
     }
-    .comment-box-container input,
-    .comment-box-container textarea {
-      width: 100%;
-      margin-bottom: 10px;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 14px;
-    }
-    .comment-box-container button {
-      padding: 10px 15px;
-      border: none;
-      background: #28a745;
-      color: white;
-      cursor: pointer;
-      border-radius: 4px;
-      font-size: 14px;
-      margin-bottom: 20px;
-    }
-    .single-comment {
-      background: #f9f9f9;
-      padding: 12px;
-      margin-top: 10px;
-      border-left: 4px solid #28a745;
-      border-radius: 5px;
-    }
-    .single-comment div {
-      margin: -15px 0;
-    }
-    .single-comment small {
-      display: block;
-      margin-top: 5px;
-      font-size: 0.8em;
-      color: #555;
-    }
-  </style>
+  }, 800); // wait for AdBlock to possibly hide bait
+});
+// ]]>
+</script>
   
   <style>
 	    
