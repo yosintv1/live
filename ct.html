@@ -19,7 +19,6 @@
 </script>
 
 
-
 <head>
     <meta content='' name='google-site-verification' />
     <meta content='width=device-width,minimum-scale=1,initial-scale=1' name='viewport' />
@@ -33,7 +32,80 @@
         { "@context": "http://schema.org/", "@type": "WebSite", "name": "CR7TV", "alternateName": "CR7TV", "url": "https://www.yosin-tv.net/" }
     </script>
 
-  <style>
+ <!-- Anti-AdBlocker Center Popup - Blogger Compatible -->
+<style>
+  #adblock-popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    max-width: 320px;
+    width: 90%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    color: #000000;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.5);
+    text-align: center;
+    z-index: 99999;
+    font-family: Arial, sans-serif;
+  }
+  #adblock-popup h3 {
+    margin-bottom: 10px;
+    font-size: 20px;
+  }
+  #adblock-popup p {
+    font-size: 15px;
+    margin-bottom: 0;
+  }
+  #popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 99998;
+  }
+</style>
+<!-- Hidden bait element to detect AdBlock -->
+<div class='adsbygoogle' id='adsbox' style='height:1px;width:1px;position:absolute;left:-9999px;'></div>
+<!-- Popup and overlay -->
+<div id='popup-overlay'></div>
+<div id='adblock-popup'>
+<h3>AdBlock Detected</h3>
+<p>Please disable your AdBlocker to view content and support us.</p>
+</div>
+<!-- Script - AdBlock Detection -->
+<script type='text/javascript'>
+// <![CDATA[
+window.addEventListener('load', function () {
+  setTimeout(function () {
+    var ad = document.getElementById('adsbox');
+    var detected = false;
+
+    try {
+      var style = window.getComputedStyle(ad);
+      if (!ad || ad.offsetHeight === 0 || ad.offsetParent === null || style.display === 'none' || style.visibility === 'hidden') {
+        detected = true;
+      }
+    } catch (e) {
+      detected = true;
+    }
+
+    if (detected) {
+      document.getElementById('adblock-popup').style.display = 'block';
+      document.getElementById('popup-overlay').style.display = 'block';
+      document.body.style.overflow = 'hidden'; // stop scrolling
+    }
+  }, 700); // wait for AdBlock to possibly hide bait
+});
+// ]]>
+</script>
+	
+	
+<style>
     .comment-section-container {
       font-family: Arial, sans-serif;
       background: #f2f2f2;
