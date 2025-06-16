@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html dir='ltr' lang='en' xmlns:fb='http://www.facebook.com/2008/fbml'>
 
+<!--
 <script>
     (function () {
     const storageKey = "lastAdLoadTime";
-    const delayBeforeLoading = 8000; // 7 seconds
+    const delayBeforeLoading = 5000; // 7 seconds
 	    
     function loadAdsScript() {
         (function(s, u, z, p) {
@@ -17,6 +18,24 @@
     setTimeout(loadAdsScript, delayBeforeLoading);
 })();
 </script>
+-->
+
+<!-- Adsterra-->
+<script>
+(function () {
+    const delayBeforeLoading = 5000; // 7 seconds
+
+    function loadAdsScript() {
+        const s = document.createElement("script");
+        s.type = "text/javascript";
+        s.src = "//cornflowercigar.com/d6/2b/8d/d62b8d48a8aaa42d1cca91eb51aba2d4.js";
+        (document.body || document.documentElement).appendChild(s);
+    }
+
+    setTimeout(loadAdsScript, delayBeforeLoading);
+})();
+</script>
+
 
 <script type='text/javascript' src='//cornflowercigar.com/38/04/12/380412ca0913cf2e013a2dd301593780.js'></script>
 
