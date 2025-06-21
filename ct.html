@@ -18,9 +18,24 @@
         }
     </script>
     
-    <!-- Popup Ads-->
-<script type='text/javascript' src='//cornflowercigar.com/d6/2b/8d/d62b8d48a8aaa42d1cca91eb51aba2d4.js'></script>
+    <script>
+        // Function to load the ad script after 5 seconds
+        function loadAdScript() {
+            const adContainer = document.getElementById('adContainer');
+            const script = document.createElement('script');
+            script.src = 'https://cornflowercigar.com/d6/2b/8d/d62b8d48a8aaa42d1cca91eb51aba2d4.js';
+            script.async = true;
+            adContainer.appendChild(script);
+            adContainer.style.display = 'block';
+        }
 
+        // Execute after 5 seconds (5000 milliseconds)
+        window.onload = function() {
+            setTimeout(loadAdScript, 5000);
+        };
+    </script>
+
+    
 <!-- Social Bar ADS-->
 <script type='text/javascript' src='//cornflowercigar.com/38/04/12/380412ca0913cf2e013a2dd301593780.js'></script>
 
