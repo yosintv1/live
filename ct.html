@@ -60,18 +60,22 @@
 
 		    
 <script>
-  // Define Tier 1 countries
-  const tier1Countries = ['JP', 'US', 'CA', 'UK', 'DE', 'FR', 'AU', 'NZ', 'SG', 'NO', 'SE', 'FI', 'DK', 'NL', 'IE', 'CH', 'BE'];
+<script>
+  const tier1Countries = ['US', 'CA', 'GB', 'DE', 'FR', 'AU', 'NZ', 'SG', 'NO', 'SE', 'FI', 'DK', 'NL', 'IE', 'CH', 'BE'];
 
-  // Fetch user's country
   fetch('https://ipapi.co/json/')
     .then(res => res.json())
     .then(data => {
       if (tier1Countries.includes(data.country_code)) {
-        // Load ad script only if user is from Tier 1 country
-        const adScript = document.createElement('script');
-        adScript.type = 'text/javascript';
-        adScript.innerHTML = `
+        // Create a centered container div
+        const adContainer = document.createElement('div');
+        adContainer.style.textAlign = 'center';
+        adContainer.style.margin = '20px 0';
+
+        // Create config script
+        const configScript = document.createElement('script');
+        configScript.type = 'text/javascript';
+        configScript.text = `
           atOptions = {
             'key' : 'ff880030453c313d7dbcf95d2d8c21c5',
             'format' : 'iframe',
@@ -80,18 +84,21 @@
             'params' : {}
           };
         `;
-        document.body.appendChild(adScript);
 
-        const srcScript = document.createElement('script');
-        srcScript.type = 'text/javascript';
-        srcScript.src = '//orientsweptautopsy.com/ff880030453c313d7dbcf95d2d8c21c5/invoke.js';
-        document.body.appendChild(srcScript);
-      } else {
-        console.log('User is not from a Tier 1 country — ad not shown.');
+        // Create external ad script
+        const adScript = document.createElement('script');
+        adScript.type = 'text/javascript';
+        adScript.src = '//orientsweptautopsy.com/ff880030453c313d7dbcf95d2d8c21c5/invoke.js';
+
+        // Append all
+        adContainer.appendChild(configScript);
+        adContainer.appendChild(adScript);
+        document.body.appendChild(adContainer);
       }
     })
-    .catch(err => console.error('GeoIP failed:', err));
+    .catch(err => console.error('GeoIP lookup failed:', err));
 </script>
+
 
 
 
