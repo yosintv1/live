@@ -56,48 +56,6 @@
                         </button>
                     </div>
                 </div>
-
-
-		    
-<script>
-  const tier1Countries = ['US', 'CA', 'GB', 'DE', 'FR', 'AU', 'NZ', 'SG', 'NO', 'SE', 'FI', 'DK', 'NL', 'IE', 'CH', 'BE'];
-
-  fetch('https://ipapi.co/json/')
-    .then(res => res.json())
-    .then(data => {
-      if (tier1Countries.includes(data.country_code)) {
-        // Create a centered container
-        const adContainer = document.createElement('div');
-        adContainer.style.textAlign = 'center';
-        adContainer.style.margin = '20px 0';
-        document.body.appendChild(adContainer);
-
-        // Create and append Adsterra config script
-        const configScript = document.createElement('script');
-        configScript.type = 'text/javascript';
-        configScript.text = `
-          atOptions = {
-            'key': 'ff880030453c313d7dbcf95d2d8c21c5',
-            'format': 'iframe',
-            'height': 250,
-            'width': 300,
-            'params': {}
-          };
-        `;
-        adContainer.appendChild(configScript);
-
-        // Create and append invoke script
-        const invokeScript = document.createElement('script');
-        invokeScript.type = 'text/javascript';
-        invokeScript.src = '//orientsweptautopsy.com/ff880030453c313d7dbcf95d2d8c21c5/invoke.js';
-        adContainer.appendChild(invokeScript);
-
-      }
-    })
-    .catch(err => console.error('GeoIP lookup failed:', err));
-</script>
-
-
 		    
 		    
                     <div class="disclaimer">
