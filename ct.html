@@ -93,28 +93,6 @@
         invokeScript.src = '//orientsweptautopsy.com/ff880030453c313d7dbcf95d2d8c21c5/invoke.js';
         adContainer.appendChild(invokeScript);
 
-        // Apply sandbox after iframe loads
-        const applySandbox = () => {
-          const iframe = adContainer.querySelector('iframe');
-          if (iframe) {
-            iframe.setAttribute('sandbox', 'allow-scripts allow-same-origin');
-          } else {
-            // Retry until iframe appears (max 10 tries)
-            let retries = 0;
-            const interval = setInterval(() => {
-              const iframe = adContainer.querySelector('iframe');
-              if (iframe) {
-                iframe.setAttribute('sandbox', 'allow-scripts allow-same-origin');
-                clearInterval(interval);
-              }
-              retries++;
-              if (retries >= 10) clearInterval(interval);
-            }, 300);
-          }
-        };
-
-        // Wait a moment after loading to try to apply sandbox
-        setTimeout(applySandbox, 800);
       }
     })
     .catch(err => console.error('GeoIP lookup failed:', err));
