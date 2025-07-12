@@ -57,29 +57,45 @@
                     </div>
                 </div>
 
-    
-  <script type="text/javascript">
-  atOptions = {
-    'key' : 'ff880030453c313d7dbcf95d2d8c21c5',
-    'format' : 'iframe',
-    'height' : 250,
-    'width' : 300,
-    'params' : {}
-  };
-</script>
-<script type="text/javascript" src="//orientsweptautopsy.com/ff880030453c313d7dbcf95d2d8c21c5/invoke.js"></script>
 
+		    
 <script>
-  // Wait for the ad script to inject its iframe
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      document.querySelectorAll('iframe[src*="orientsweptautopsy.com"]').forEach(iframe => {
-        iframe.setAttribute('sandbox', 'allow-scripts allow-same-origin');
-        iframe.removeAttribute('allow'); // Optional: remove 'allow' if present
-      });
-    }, 500); // Wait for the ad script to finish injecting
-  });
+  // Define Tier 1 countries
+  const tier1Countries = ['JP', 'US', 'CA', 'UK', 'DE', 'FR', 'AU', 'NZ', 'SG', 'NO', 'SE', 'FI', 'DK', 'NL', 'IE', 'CH', 'BE'];
+
+  // Fetch user's country
+  fetch('https://ipapi.co/json/')
+    .then(res => res.json())
+    .then(data => {
+      if (tier1Countries.includes(data.country_code)) {
+        // Load ad script only if user is from Tier 1 country
+        const adScript = document.createElement('script');
+        adScript.type = 'text/javascript';
+        adScript.innerHTML = `
+          atOptions = {
+            'key' : 'ff880030453c313d7dbcf95d2d8c21c5',
+            'format' : 'iframe',
+            'height' : 250,
+            'width' : 300,
+            'params' : {}
+          };
+        `;
+        document.body.appendChild(adScript);
+
+        const srcScript = document.createElement('script');
+        srcScript.type = 'text/javascript';
+        srcScript.src = '//orientsweptautopsy.com/ff880030453c313d7dbcf95d2d8c21c5/invoke.js';
+        document.body.appendChild(srcScript);
+      } else {
+        console.log('User is not from a Tier 1 country — ad not shown.');
+      }
+    })
+    .catch(err => console.error('GeoIP failed:', err));
 </script>
+
+
+
+		    
 		    
 <div class="disclaimer">
                     <span class="disclaimer-text">Skip 1-2 Ads | Watch Peacefully</span>
