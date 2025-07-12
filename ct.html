@@ -60,47 +60,70 @@
 
 		    
 <script>
-  // Define Tier 1 countries
-  const tier1Countries = ['JP', 'US', 'CA', 'UK', 'DE', 'FR', 'AU', 'NZ', 'SG', 'NO', 'SE', 'FI', 'DK', 'NL', 'IE', 'CH', 'BE'];
+  const tier1Countries = ['US', 'CA', 'GB', 'DE', 'FR', 'AU', 'NZ', 'SG', 'NO', 'SE', 'FI', 'DK', 'NL', 'IE', 'CH', 'BE'];
 
-  // Fetch user's country
   fetch('https://ipapi.co/json/')
     .then(res => res.json())
     .then(data => {
       if (tier1Countries.includes(data.country_code)) {
-        // Load ad script only if user is from Tier 1 country
-        const adScript = document.createElement('script');
-        adScript.type = 'text/javascript';
-        adScript.innerHTML = `
+        // Create a centered container
+        const adContainer = document.createElement('div');
+        adContainer.style.textAlign = 'center';
+        adContainer.style.margin = '20px 0';
+        document.body.appendChild(adContainer);
+
+        // Create and append Adsterra config script
+        const configScript = document.createElement('script');
+        configScript.type = 'text/javascript';
+        configScript.text = `
           atOptions = {
-            'key' : 'ff880030453c313d7dbcf95d2d8c21c5',
-            'format' : 'iframe',
-            'height' : 250,
-            'width' : 300,
-            'params' : {}
+            'key': 'ff880030453c313d7dbcf95d2d8c21c5',
+            'format': 'iframe',
+            'height': 250,
+            'width': 300,
+            'params': {}
           };
         `;
-        document.body.appendChild(adScript);
+        adContainer.appendChild(configScript);
 
-        const srcScript = document.createElement('script');
-        srcScript.type = 'text/javascript';
-        srcScript.src = '//orientsweptautopsy.com/ff880030453c313d7dbcf95d2d8c21c5/invoke.js';
-        document.body.appendChild(srcScript);
-      } else {
-        console.log('User is not from a Tier 1 country — ad not shown.');
+        // Create and append invoke script
+        const invokeScript = document.createElement('script');
+        invokeScript.type = 'text/javascript';
+        invokeScript.src = '//orientsweptautopsy.com/ff880030453c313d7dbcf95d2d8c21c5/invoke.js';
+        adContainer.appendChild(invokeScript);
+
+        // Apply sandbox after iframe loads
+        const applySandbox = () => {
+          const iframe = adContainer.querySelector('iframe');
+          if (iframe) {
+            iframe.setAttribute('sandbox', 'allow-scripts allow-same-origin');
+          } else {
+            // Retry until iframe appears (max 10 tries)
+            let retries = 0;
+            const interval = setInterval(() => {
+              const iframe = adContainer.querySelector('iframe');
+              if (iframe) {
+                iframe.setAttribute('sandbox', 'allow-scripts allow-same-origin');
+                clearInterval(interval);
+              }
+              retries++;
+              if (retries >= 10) clearInterval(interval);
+            }, 300);
+          }
+        };
+
+        // Wait a moment after loading to try to apply sandbox
+        setTimeout(applySandbox, 800);
       }
     })
-    .catch(err => console.error('GeoIP failed:', err));
+    .catch(err => console.error('GeoIP lookup failed:', err));
 </script>
 
 
 
-
-
-
 		    
 		    
-<div class="disclaimer">
+                    <div class="disclaimer">
                     <span class="disclaimer-text">Skip 1-2 Ads | Watch Peacefully</span>
                 </div>
                 
